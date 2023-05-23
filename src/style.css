@@ -1,1 +1,90 @@
+:root {
+  --primary: hsl(211, 31%, 28%);
+  --secondary: hsl(154, 49%, 49%);
+}
 
+body {
+  background-color: var(--primary);
+}
+
+.app {
+  width: 40vw;
+  padding-block: 10px;
+  margin-inline: 30vw;
+  background-color: var(--secondary);
+  border-radius: 20px;
+}
+
+h2,
+h3 {
+  text-align: center;
+}
+
+form {
+  width: 40%;
+  margin-inline: 30%;
+}
+
+#content {
+  border-radius: 5px;
+  width: 98%;
+  margin-bottom: 10px;
+}
+
+.add-button {
+  text-align: right;
+  background-color: var(--primary);
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.form-actions {
+  display: grid;
+  width: 100%;
+  justify-items: end;
+}
+
+.list {
+  width: 40%;
+  margin-inline: 30%;
+}
+
+.todo-item {
+  display: flex;
+  margin-block: 10px;
+  background-color: var(--primary);
+  height: 100px;
+  border-radius: 10px;
+}
+
+.todo-done {
+  margin-top: 35px;
+  text-align: center;
+  width: 20%;
+  height: 20px;
+}
+
+.todo-content {
+  margin-top: 35px;
+  width: 80%;
+  height: 20px;
+  color: white;
+}
+
+.actions {
+  margin: 35px 10px 0px 0px;
+}
+
+.todo-text {
+  width: 85%;
+}
+
+.delete {
+  background-color: red;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}

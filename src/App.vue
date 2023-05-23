@@ -46,7 +46,7 @@ onMounted(() => {
       <h2 class="title">Greetings User!</h2>
     </section>
 
-    <section class="createTodo">
+    <section class="create-todo">
       <h3>Add todo to your list!</h3>
       <form @submit.prevent="addTodo">
         <input
@@ -56,19 +56,21 @@ onMounted(() => {
           id="content"
           v-model="inputContent"
         />
-        <input type="submit" value="Add todo" />
+        <div class="form-actions">
+          <button class="add-button" type="submit">Add todo</button>
+        </div>
       </form>
     </section>
 
-    <section class="todoList">
+    <section class="todo-list">
       <h3>Todo List</h3>
       <div class="list">
-        <div v-for="todo in todosAsc" :class="todoItem">
-          <label>
+        <div class="todo-item" v-for="todo in todosAsc" :class="todoItem">
+          <label class="todo-done">
             <input type="checkbox" v-model="todo.done" />
           </label>
           <div class="todo-content">
-            <input type="text" v-model="todo.content" />
+            <span class="todo-text" type="text">{{ todo.content }}</span>
           </div>
           <div class="actions">
             <button class="delete" @click="removeTodo(todo)">Delete</button>
