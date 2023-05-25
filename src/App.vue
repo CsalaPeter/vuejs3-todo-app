@@ -43,40 +43,42 @@ onMounted(() => {
 <template>
   <main class="app">
     <section class="header">
-      <h2 class="title">Greetings User!</h2>
+      <h2 class="title">Your Todo List</h2>
     </section>
 
-    <section class="create-todo">
-      <h3>Add todo to your list!</h3>
-      <form @submit.prevent="addTodo">
-        <input
-          type="text"
-          placeholder="New todo..."
-          name="content"
-          id="content"
-          v-model="inputContent"
-        />
-        <div class="form-actions">
-          <button class="add-button" type="submit">Add todo</button>
-        </div>
-      </form>
-    </section>
+    <div class="todo-body">
+      <section class="create-todo">
+        <h3>Add todo to your list!</h3>
+        <form @submit.prevent="addTodo">
+          <input
+            type="text"
+            placeholder="New todo..."
+            name="content"
+            id="content"
+            v-model="inputContent"
+          />
+          <div class="form-actions">
+            <button class="add-button" type="submit">Add todo</button>
+          </div>
+        </form>
+      </section>
 
-    <section class="todo-list">
-      <h3>Todo List</h3>
-      <div class="list">
-        <div class="todo-item" v-for="todo in todosAsc" :class="todoItem">
-          <label class="todo-done">
-            <input type="checkbox" v-model="todo.done" />
-          </label>
-          <div class="todo-content">
-            <span class="todo-text" type="text">{{ todo.content }}</span>
-          </div>
-          <div class="actions">
-            <button class="delete" @click="removeTodo(todo)">Delete</button>
+      <section class="todo-list">
+        <h3>Todo List</h3>
+        <div class="list">
+          <div class="todo-item" v-for="todo in todosAsc" :class="todoItem">
+            <label class="todo-done">
+              <input type="checkbox" v-model="todo.done" />
+            </label>
+            <div class="todo-content">
+              <span class="todo-text" type="text">{{ todo.content }}</span>
+            </div>
+            <div class="actions">
+              <button class="delete" @click="removeTodo(todo)">Delete</button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 </template>

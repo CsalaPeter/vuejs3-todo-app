@@ -1,18 +1,40 @@
 :root {
-  --primary: hsl(211, 31%, 28%);
-  --secondary: hsl(154, 49%, 49%);
+  --blue-primary: hsl(205, 42%, 45%);
+  --blue-secondary: hsl(197, 93%, 29%);
+  --green-primary: hsl(89, 47%, 40%);
+  --green-secondary: hsl(68, 100%, 37%);
+  --default: hsl(212, 60%, 95%);
 }
 
 body {
-  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  background-color: var(--default);
 }
 
 .app {
-  width: 40vw;
+  width: 1200px;
+  border-radius: 10px;
+}
+
+.header {
+  height: 50px;
+  background-color: var(--blue-secondary);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.title {
+  margin: 20px;
+  padding-top: 5px;
+  color: var(--default);
+}
+
+.todo-body {
+  background-color: var(--blue-primary);
   padding-block: 10px;
-  margin-inline: 30vw;
-  background-color: var(--secondary);
-  border-radius: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 h2,
@@ -33,7 +55,7 @@ form {
 
 .add-button {
   text-align: right;
-  background-color: var(--primary);
+  background-color: var(--green-primary);
   border: none;
   padding: 5px;
   border-radius: 5px;
@@ -54,7 +76,7 @@ form {
 .todo-item {
   display: flex;
   margin-block: 10px;
-  background-color: var(--primary);
+  background-color: var(--green-primary);
   height: 100px;
   border-radius: 10px;
 }
