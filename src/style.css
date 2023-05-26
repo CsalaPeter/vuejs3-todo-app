@@ -2,8 +2,15 @@
   --blue-primary: hsl(205, 42%, 45%);
   --blue-secondary: hsl(197, 93%, 29%);
   --green-primary: hsl(89, 47%, 40%);
-  --green-secondary: hsl(68, 100%, 37%);
+  --green-secondary: hsl(90, 100%, 37%);
+  --personal: hsl(197, 91%, 40%);
+  --work: hsl(40, 100%, 40%);
   --default: hsl(212, 60%, 95%);
+
+  --shadow: 3px 5px hsl(0, 0%, 5%, 0.5);
+  --default-glow: 2px 2px 10px hsl(212, 60%, 95%);
+  --personal-glow: 0px 0px 5px hsla(197, 91%, 40%, 0.8);
+  --work-glow: 0px 0px 5px hsla(40, 100%, 40%, 0.8);
 }
 
 body {
@@ -19,9 +26,10 @@ body {
 
 .header {
   height: 50px;
-  background-color: var(--blue-secondary);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  outline: 1px solid black;
+  background-color: var(--blue-secondary);
 }
 
 .title {
@@ -31,10 +39,14 @@ body {
 }
 
 .todo-body {
-  background-color: var(--blue-primary);
+  display: grid;
+  height: 700px;
   padding-block: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  grid-template-columns: 1fr 1fr;
+  outline: 1px solid black;
+  background-color: var(--blue-primary);
 }
 
 h2,
@@ -43,23 +55,31 @@ h3 {
 }
 
 form {
-  width: 40%;
-  margin-inline: 30%;
+  width: 70%;
+  margin-inline: 15%;
 }
 
 #content {
-  border-radius: 5px;
   width: 98%;
+  border-radius: 5px;
   margin-bottom: 10px;
 }
 
 .add-button {
-  text-align: right;
-  background-color: var(--green-primary);
-  border: none;
   padding: 5px;
   border-radius: 5px;
-  color: white;
+  border: none;
+  color: var(--default);
+  text-align: right;
+  box-shadow: var(--shadow);
+  background-color: var(--green-primary);
+  transition: 0.25s ease-in-out;
+  font-size: 1rem;
+}
+
+.add-button:hover {
+  cursor: pointer;
+  opacity: 0.75;
 }
 
 .form-actions {
@@ -68,45 +88,148 @@ form {
   justify-items: end;
 }
 
+.todo-list {
+  height: 550px;
+  overflow-y: scroll;
+}
+
 .list {
-  width: 40%;
-  margin-inline: 30%;
+  width: 70%;
+  margin-inline: 15%;
 }
 
 .todo-item {
   display: flex;
-  margin-block: 10px;
-  background-color: var(--green-primary);
-  height: 100px;
+  align-items: center;
+  padding: 1rem;
   border-radius: 10px;
+  box-shadow: var(--shadow);
+  background-color: var(--green-primary);
+  margin-block: 15px;
 }
 
-.todo-done {
-  margin-top: 35px;
-  text-align: center;
-  width: 20%;
-  height: 20px;
+.todo-item label {
+  display: block;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.todo-item .todo-content {
+  flex: 1 0.7 0%;
 }
 
 .todo-content {
-  margin-top: 35px;
-  width: 80%;
-  height: 20px;
-  color: white;
+  color: var(--default);
 }
 
-.actions {
-  margin: 35px 10px 0px 0px;
-}
-
-.todo-text {
-  width: 85%;
+.todo-item.done .todo-content .todo-text {
+  text-decoration: line-through;
 }
 
 .delete {
-  background-color: red;
   border: none;
   padding: 5px;
   border-radius: 5px;
-  color: white;
+  cursor: pointer;
+  color: var(--default);
+  background-color: red;
+  box-shadow: var(--shadow);
+  transition: 0.2s ease-in-out;
+}
+
+.delete:hover {
+  opacity: 0.75;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.options label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  background-color: var(--default);
+}
+
+.options label div {
+  margin-block: 5px;
+}
+
+/* custon radio checkbox */
+
+input[type="radio"],
+input[type="checkbox"] {
+  display: none;
+}
+
+.bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--work-glow);
+  box-shadow: var(--work-glow);
+}
+
+.bubble.personal {
+  border-color: 2px solid var(--personal);
+  box-shadow: var(--personal-glow);
+}
+.bubble::after {
+  content: "";
+  display: block;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  background-color: var(--work);
+  box-shadow: var(--work-glow);
+  border-radius: 50%;
+  transition: 0.2s ease-in-out;
+}
+
+.bubble.personal::after {
+  background-color: var(--personal);
+  box-shadow: var(--personal-glow);
+}
+
+input:checked ~ .bubble::after {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+.list .bubble {
+  box-shadow: var(--default-glow);
+}
+
+.list .bubble::after {
+  background-color: var(--default);
+}
+
+/* Icons */
+
+.work-icon {
+  color: var(--work);
+  width: 22px;
+  height: 22px;
+}
+
+.person-icon {
+  color: var(--personal);
+  width: 22px;
+  height: 22px;
+}
+
+.icon-container {
+  margin-right: 10px;
 }
